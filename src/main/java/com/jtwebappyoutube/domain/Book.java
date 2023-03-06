@@ -1,10 +1,9 @@
 package com.jtwebappyoutube.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -19,8 +18,14 @@ public class Book {
     private String title;
     private String isbn;
 
-    public Book(String title, String isbn) {
+    @ManyToMany
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+                inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors;
+
+    public Book(String title, String isbn, Set<Author> authors) {
         this.title = title;
         this.isbn = isbn;
+        this.authors = authors;
     }
 }
