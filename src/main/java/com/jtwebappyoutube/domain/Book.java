@@ -44,4 +44,14 @@ public class Book {
     public int hashCode() {
         return Id != null ? Id.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "Id=" + Id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", authors=" + authors +
+                '}';
+    }
 }

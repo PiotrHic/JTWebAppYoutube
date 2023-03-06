@@ -41,4 +41,13 @@ public class Author {
     public int hashCode() {
         return Id != null ? Id.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", books=" + books +
+                '}';
+    }
 }
