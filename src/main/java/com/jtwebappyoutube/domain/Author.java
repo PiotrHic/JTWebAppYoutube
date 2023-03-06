@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,12 +20,10 @@ public class Author {
     private Long Id;
     private String name;
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
-    public Author(String name, Set<Book> books, Set<Book> books1) {
+    public Author(String name) {
         this.name = name;
-        this.books = books;
-        this.books = books1;
     }
 
     @Override
