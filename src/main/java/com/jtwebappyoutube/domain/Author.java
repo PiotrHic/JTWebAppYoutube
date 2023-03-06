@@ -11,6 +11,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Author {
+
+    private Long Id;
     private String name;
     private Set<Book> books;
 }
