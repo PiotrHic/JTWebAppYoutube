@@ -1,28 +1,37 @@
 package com.jtwebappyoutube.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 
-@Data
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
-public class Author {
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
     private String name;
-    @ManyToMany(mappedBy = "authors")
+    private String address;
+
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
     private Set<Book> books = new HashSet<>();
 
-    public Author(String name) {
+    public Publisher(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public Publisher(String name) {
         this.name = name;
     }
 
@@ -31,22 +40,22 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Author author = (Author) o;
+        Publisher publisher = (Publisher) o;
 
-        return Objects.equals(Id, author.Id);
+        return Objects.equals(id, publisher.id);
     }
 
     @Override
     public int hashCode() {
-        return Id != null ? Id.hashCode() : 0;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "Author{" +
-                "Id=" + Id +
+        return "Publisher{" +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", books=" + books +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
